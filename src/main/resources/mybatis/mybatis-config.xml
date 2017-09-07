@@ -9,6 +9,7 @@
   </settings>
  
   <typeAliases>
+  	<typeAlias alias="boardVO" type="com.hanbit.there.api.vo.BoardVO"/>
   	<typeAlias alias="memberVO" type="com.hanbit.there.api.vo.MemberVO"/>
   </typeAliases>
 

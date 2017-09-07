@@ -2,6 +2,19 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="member">	
-
+<mapper namespace="member">
+	
+	<insert id="insertMember" parameterType="memberVO">
+		INSERT INTO tbl_kch_member
+			(uid, email, password, create_dt, created_by)
+		VALUES
+			(#{uid}, #{email}, #{password}, NOW(), #{createdBy})			
+	</insert>
+	
+	<select id="countMember" parameterType="string" resultType="int">
+		SELECT COUNT(uid)
+		  FROM tbl_kch_member
+		 WHERE email = {#email}
+	</select>
+	
 </mapper>
