@@ -14,7 +14,7 @@
 	<select id="countMember" parameterType="string" resultType="int">
 		SELECT COUNT(uid)
 		  FROM tbl_kch_member
-		 WHERE email = {#email}
+		 WHERE email = #{email}
 	</select>
 	
 </mapper>
