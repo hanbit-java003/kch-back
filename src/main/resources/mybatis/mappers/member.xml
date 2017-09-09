@@ -17,4 +17,10 @@
 		 WHERE email = #{email}
 	</select>
 	
+	<select id="selectMember" parameterType="string" resultType="memberVO">
+		SELECT uid, email, password, create_dt, created_by
+		  FROM tbl_kch_member
+		 WHERE email = #{email}	
+	</select>
+	
 </mapper>

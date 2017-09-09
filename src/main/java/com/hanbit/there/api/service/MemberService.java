@@ -50,6 +50,18 @@ public class MemberService {
 		return new String(uid);
 	}
 	
-	
+	public MemberVO signIn(String email, String password) {
+		MemberVO memberVO = memberDAO.selectMember(email);
+		
+		if (memberVO == null) {
+			throw new RuntimeException("가입되지 않은 이메일입니다.");
+		}
+		
+		if (!passwordEncoder.matches(password, memberVO.getPassword())) {
+			throw new RuntimeException("잘못된 비밀번호입니다.");
+		}
+		
+		return memberVO;
+	}
 
 }
