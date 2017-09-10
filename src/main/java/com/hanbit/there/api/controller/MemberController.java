@@ -39,6 +39,9 @@ public class MemberController {
 	@PostMapping("/signin")
 	public Map signin(@RequestParam("email") String email, @RequestParam("password") String password, 
 			@RequestParam("remember") boolean remember, HttpSession session) {
+		
+		System.out.println(remember);
+		
 		MemberVO memberVO = memberService.signIn(email, password);
 		
 		// session 에 로그인 정보 (signedIn, uid, email)를 넣는다.
@@ -48,6 +51,31 @@ public class MemberController {
 		
 		Map result = new HashMap();
 		result.put("email", memberVO.getEmail());		
+		
+		return result;
+	}
+	
+	@RequestMapping("/get")
+	public Map getMember(HttpSession session) {
+		Map member = new HashMap();
+		
+		if (session.getAttribute("signedIn") == null) {
+			member.put("signedIn", false);
+		}
+		else {
+			member.put("signedIn", true);
+			member.put("email", session.getAttribute("email"));
+		}
+		
+		return member;
+	}
+	
+	@RequestMapping("/signout")
+	public Map signOut(HttpSession session) {
+		session.invalidate(); // 현재 session 폐기.
+		
+		Map result = new HashMap();		
+		result.put("status", "ok");
 		
 		return result;
 	}
