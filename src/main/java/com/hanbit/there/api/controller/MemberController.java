@@ -30,7 +30,7 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@PostMapping("/signup")
-	public Map signup(@RequestParam("email") String email, @RequestParam("password") String password) {
+	public Map signUp(@RequestParam("email") String email, @RequestParam("password") String password) {
 		
 		MemberVO memberVO = new MemberVO();
 		memberVO.setEmail(email);
@@ -45,7 +45,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("/signin")
-	public Map signin(@RequestParam("email") String email, @RequestParam("password") String password, 
+	public Map signIn(@RequestParam("email") String email, @RequestParam("password") String password, 
 			@RequestParam("remember") boolean remember, HttpSession session, HttpServletResponse response) {		
 		
 		MemberVO memberVO = memberService.signIn(email, password);
